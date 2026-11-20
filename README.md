@@ -1,1 +1,1 @@
-autonom pentru fiecare culoare sper
+OK MULTE MULTE GRESELI, NU E BUN
