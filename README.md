@@ -1,1 +1,1 @@
-autonom normal pentru fiecare culoare sper
+autonom pentru fiecare culoare sper
