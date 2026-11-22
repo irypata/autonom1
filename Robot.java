@@ -1,11 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+import static com.pedropathing.ivy.commands.Commands.waitMs;
 
+import com.pedropathing.ivy.Command;
 import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -67,21 +67,23 @@ public abstract class Robot extends LinearOpMode {
     public void transferOFF() {
         mtransfer.setPower(0);
     }
-    public void shoot() {
+    public Command shoot() {
         shooterON();
-        // daca fac ca gen daca puterea la shootere e mai mica decat idle sa ofer mai mult timp
-        sleep(900);
+        // daca fac ca gen daca puterea la shootere e mai mica decat idle sa ofer mai mult timp?
+        waitMs(900);
         loaderON();
         transferON();
-        sleep(1000);
+        waitMs(1000);
         shooterIDLE();
         transferOFF();
         loaderOFF();
+        return null;
     }
-    public void intake() {
+    public Command intake() {
         intakeON();
-        sleep(500);
+        waitMs(500);
         intakeOFF();
+        return null;
     }
     public void loaderON() {
         loader.setPosition(1);
