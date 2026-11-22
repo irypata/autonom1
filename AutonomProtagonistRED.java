@@ -11,12 +11,14 @@ import com.pedropathing.ivy.Command;
 import com.pedropathing.ivy.Scheduler;
 import static com.pedropathing.ivy.Scheduler.schedule;
 import static com.pedropathing.ivy.commands.Commands.*;
+import static com.pedropathing.ivy.groups.Groups.parallel;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import org.firstinspires.ftc.teamcode.pedro.Constants;
 
-@Autonomous(name = "AutonomProtagonistRED")
+@Autonomous(name = "ProtagonistRED")
 public class AutonomProtagonistRED extends Robot {
     private Follower follower;
     private final PoseFactory poseFactory = PoseFactory.degrees();
@@ -59,47 +61,36 @@ public class AutonomProtagonistRED extends Robot {
         return Paths.curve(point5Start, point5Control1, point5).linear(point5Start, point5);
     }
 
+    public Command autoRoutine() {
+        return sequential(
+                shoot(),
+                follow(follower, path1()),
+                intake(),
+                follow(follower, path2()),
+                waitMs(7000),
+                shoot(),
+                follow(follower, path3()),
+                intake(),
+                follow(follower, path4()),
+                shoot(),
+                follow(follower, path5())
+        );
+    }
+
     @Override
     public void runOpMode() {
         initRobot();
+        Scheduler.reset();
+        follower = Constants.create(hardwareMap);
         follower.setPose(start);
+        follower.update();
+
         waitForStart();
+        schedule(autoRoutine());
 
         while(opModeIsActive()) {
-            // 1. tragere (=> tip) // 2s
-            shoot();
-            // 2. move la side // 2s
-            follow(follower, path1());
-            // 3. intake bile side // 1s
-            intake();
-            // 4. move la tragere // 2s
-            follow(follower, path2());
-
-            // ~7 aici
-
-            // 5. asteapta pana la tip
-            sleep(7000);
-
-            // ~14s aici
-
-            // 6. tragere // 2s
-            shoot();
-            // 7. move la flower // 2s
-            follow(follower, path3());
-            // 8. intake bile flower // 1s
-            intake();
-            // 9. move la tragere // 2s
-            follow(follower, path4());
-            // 10. tragere (=> tip) // 2s
-            shoot();
-
-            // ~14s + ~9s = 23s aici
-
-            // park // ~3s
-            follow(follower, path5());
-
-            // total = 26-27s
-            // la aproape toate am aproximat prin scadere, deci probabil e mai mult, dar asa e safe
+            follower.update();
+            Scheduler.execute();
         }
     }
 
