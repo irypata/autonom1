@@ -16,7 +16,9 @@ import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name = "AutonomProtagonistBLUE")
+import org.firstinspires.ftc.teamcode.pedro.Constants;
+
+@Autonomous(name = "ProtagonistBLUE")
 public class AutonomProtagonistBLUE extends Robot {
     private Follower follower;
     private final PoseFactory poseFactory = PoseFactory.degrees().mirrorX(70.75);
@@ -58,25 +60,36 @@ public class AutonomProtagonistBLUE extends Robot {
         return Paths.curve(point5Start, point5Control1, point5).linear(point5Start, point5);
     }
 
-    // copy paste de la red
+    public Command autoRoutine() {
+        return sequential(
+                shoot(),
+                follow(follower, path1()),
+                intake(),
+                follow(follower, path2()),
+                waitMs(7000),
+                shoot(),
+                follow(follower, path3()),
+                intake(),
+                follow(follower, path4()),
+                shoot(),
+                follow(follower, path5())
+        );
+    }
+
     @Override
     public void runOpMode() {
         initRobot();
+        Scheduler.reset();
+        follower = Constants.create(hardwareMap);
         follower.setPose(start);
+        follower.update();
+
         waitForStart();
+        schedule(autoRoutine());
 
         while(opModeIsActive()) {
-            shoot();
-            follow(follower, path1());
-            intake();
-            follow(follower, path2());
-            sleep(7000);
-            shoot();
-            follow(follower, path3());
-            intake();
-            follow(follower, path4());
-            shoot();
-            follow(follower, path5());
+            follower.update();
+            Scheduler.execute();
         }
     }
 }
