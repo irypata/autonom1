@@ -16,7 +16,9 @@ import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name = "AutonomDeuteragonistRED")
+import org.firstinspires.ftc.teamcode.pedro.Constants;
+
+@Autonomous(name = "DeuteragonistRED")
 public class AutonomDeuteragonistRED extends Robot {
     private Follower follower;
     private final PoseFactory poseFactory = PoseFactory.degrees().mirrorX(70.75);
@@ -42,21 +44,32 @@ public class AutonomDeuteragonistRED extends Robot {
         return Paths.line(point3Start, point3).linear(point3Start, point3);
     }
 
-    // copy paste de la blue
+    public Command autoRoutine() {
+        return sequential(
+                waitMs(7000),
+                shoot(),
+                follow(follower, path1()),
+                intake(),
+                follow(follower, path2()),
+                shoot(),
+                follow(follower, path3())
+        );
+    }
+
     @Override
     public void runOpMode() {
         initRobot();
+        Scheduler.reset();
+        follower = Constants.create(hardwareMap);
         follower.setPose(start);
+        follower.update();
+
+        schedule(autoRoutine());
         waitForStart();
 
         while(opModeIsActive()) {
-            sleep(7000);
-            shoot();
-            follow(follower, path1());
-            intake();
-            follow(follower, path2());
-            shoot();
-            follow(follower, path3());
+            follower.update();
+            Scheduler.execute();
         }
     }
 }
