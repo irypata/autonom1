@@ -1,1 +1,1 @@
-OK MULTE MULTE GRESELI, NU E BUN
+ok am mai reparat, dar nu stiu daca e bun
