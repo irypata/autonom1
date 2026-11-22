@@ -16,7 +16,9 @@ import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name = "AutonomDeuteragonistBLUE")
+import org.firstinspires.ftc.teamcode.pedro.Constants;
+
+@Autonomous(name = "DeuteragonistBLUE")
 public class AutonomDeuteragonistBLUE extends Robot {
     private Follower follower;
     private final PoseFactory poseFactory = PoseFactory.degrees();
@@ -42,31 +44,34 @@ public class AutonomDeuteragonistBLUE extends Robot {
         return Paths.line(point3Start, point3).linear(point3Start, point3);
     }
 
+    public Command autoRoutine() {
+        return sequential(
+                waitMs(7000),
+                shoot(),
+                follow(follower, path1()),
+                intake(),
+                follow(follower, path2()),
+                shoot(),
+                follow(follower, path3())
+        );
+    }
+
     @Override
     public void runOpMode() {
         initRobot();
+        Scheduler.reset();
+        follower = Constants.create(hardwareMap);
         follower.setPose(start);
+        follower.update();
+
         waitForStart();
+        schedule(autoRoutine());
 
-        while(opModeIsActive()) {
-            // 1. asteapta pana la tip
-            sleep(7000);
-            // 2. tragere // 2s
-            shoot();
-            // 3. move la flower // 1s
-            follow(follower, path1());
-            // 4. intake bile flower // 1s
-            intake();
-            // 5. move la tragere //  1s
-            follow(follower, path2());
-            // 6. tragere // 2s
-            shoot();
-
-            // ~7s + ~7s = 14s aici
-
-            // 7. park ca altceva nu are ce sa faca
-            follow(follower, path3());
+        while (opModeIsActive()) {
+            follower.update();
+            Scheduler.execute();
         }
+
     }
 
 }
