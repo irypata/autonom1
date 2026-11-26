@@ -1,1 +1,1 @@
-ok am mai reparat, dar nu stiu daca e bun
+am adaugat toate autonoamele posibile, sper ca sunt bune
