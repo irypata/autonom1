@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import static com.pedropathing.ivy.commands.Commands.instant;
 import static com.pedropathing.ivy.commands.Commands.waitMs;
+import static com.pedropathing.ivy.groups.Groups.sequential;
 
 import com.pedropathing.ivy.Command;
 import com.qualcomm.robotcore.eventloop.opmode.*;
@@ -68,22 +70,20 @@ public abstract class Robot extends LinearOpMode {
         mtransfer.setPower(0);
     }
     public Command shoot() {
-        shooterON();
-        // daca fac ca gen daca puterea la shootere e mai mica decat idle sa ofer mai mult timp?
-        waitMs(900);
-        loaderON();
-        transferON();
-        waitMs(1000);
-        shooterIDLE();
-        transferOFF();
-        loaderOFF();
-        return null;
+        return sequential(
+                instant(this::shooterON),
+                waitMs(900),
+                instant(this::intakeON),
+                waitMs(1000),
+                instant(this::intakeOFF)
+        );
     }
     public Command intake() {
-        intakeON();
-        waitMs(500);
-        intakeOFF();
-        return null;
+        return sequential(
+                instant(this::intakeON),
+                waitMs(500),
+                instant(this::intakeOFF)
+        );
     }
     public void loaderON() {
         loader.setPosition(1);
