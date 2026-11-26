@@ -25,35 +25,32 @@ public class AutonomAeschylusBLUE extends Robot{
     private final PoseFactory poseFactory = PoseFactory.degrees();
 
     private final Pose start = poseFactory.of(81, 8, 90);
-    private final Pose path1 = poseFactory.of(81.3045, 132.1019, 270);
-    private final Pose point2Start = poseFactory.of(81.3045, 132.1019, 270);
-    private final Pose point2 = poseFactory.of(136.5399, 135.7204, 250);
-    private final Pose point2Control1 = poseFactory.of(101.1446, 116.3519, 0);
-    private final Pose point3Start = poseFactory.of(136.5399, 135.7204, 250);
-    private final Pose point3 = poseFactory.of(81.5928, 9.3428, 90);
-    private final Pose point3Control1 = poseFactory.of(86.589, 116.2833, 0);
-    private final Pose point3Control2 = poseFactory.of(119.1592, 19.5707, 0);
-    private final Pose point3Control3 = poseFactory.of(132.3738, 30.9807, 0);
-    private final Pose point3Control4 = poseFactory.of(76.9585, 38.0781, 0);
-    private final Pose point4Start = poseFactory.of(81.5928, 9.3428, 90);
-    private final Pose point4 = poseFactory.of(94.3641, 9.6147, 90);
-    private final Pose point4Control1 = poseFactory.of(87.9995, 21.7415, 0);
-    private final Pose point5Start = poseFactory.of(94.3641, 9.6147, 90);
-    private final Pose point5 = poseFactory.of(81.7056, 8.4704, 90);
-    private final Pose point5Control1 = poseFactory.of(87.1429, 21.8396, 0);
-    private final Pose point6Start = poseFactory.of(81.7056, 8.4704, 90);
-    private final Pose point6 = poseFactory.of(133.2236, 94.2476, 180);
-    private final Pose point6Control1 = poseFactory.of(75.9666, 34.7413, 0);
-    private final Pose point6Control2 = poseFactory.of(134.3215, 38.4375, 0);
-    private final Pose point6Control3 = poseFactory.of(109.9934, 20.3129, 0);
-    private final Pose point6Control4 = poseFactory.of(93.5346, 102.4244, 0);
-    private final Pose point7Start = poseFactory.of(133.2236, 94.2476, 180);
-    private final Pose point7 = poseFactory.of(81.3603, 131.5973, 270);
-    private final Pose point7Control1 = poseFactory.of(86.9198, 89.9832, 0);
-    private final Pose point7Control2 = poseFactory.of(127.9049, 135.232, 0);
-    private final Pose point8Start = poseFactory.of(81.3603, 131.5973, 270);
-    private final Pose point8 = poseFactory.of(132.4493, 44.6771, 180);
-    private final Pose point8Control1 = poseFactory.of(107.06, 109.9444, 0);
+    private final Pose path1 = poseFactory.of(81, 114.2641, 270);
+    private final Pose point2Start = poseFactory.of(81, 114.2641, 270);
+    private final Pose point2 = poseFactory.of(134.3731, 134.0088, 250);
+    private final Pose point2Control1 = poseFactory.of(107.562, 114.9446, 0);
+    private final Pose point3Start = poseFactory.of(134.3731, 134.0088, 250);
+    private final Pose point3 = poseFactory.of(81.2394, 9, 90);
+    private final Pose point3Control1 = poseFactory.of(59.7103, 114.7325, 0);
+    private final Pose point3Control2 = poseFactory.of(86.7465, 103.562, 0);
+    private final Pose point3Control3 = poseFactory.of(80.6497, 16.6212, 0);
+    private final Pose point4Start = poseFactory.of(81.2394, 9, 90);
+    private final Pose point4 = poseFactory.of(94.9186, 9.9093, 90);
+    private final Pose point4Control1 = poseFactory.of(86.4032, 17.3452, 0);
+    private final Pose point5Start = poseFactory.of(94.9186, 9.9093, 90);
+    private final Pose point5 = poseFactory.of(81.4022, 8.8221, 90);
+    private final Pose point5Control1 = poseFactory.of(86.4184, 18.1975, 0);
+    private final Pose point6Start = poseFactory.of(81.4022, 8.8221, 90);
+    private final Pose point6 = poseFactory.of(131.6231, 94.6204, 180);
+    private final Pose point6Control1 = poseFactory.of(80.6146, 33.0511, 0);
+    private final Pose point6Control2 = poseFactory.of(135.1111, 31.4304, 0);
+    private final Pose point6Control3 = poseFactory.of(109.2394, 99.9324, 0);
+    private final Pose point7Start = poseFactory.of(131.6231, 94.6204, 180);
+    private final Pose point7 = poseFactory.of(81.2311, 114.435, 270);
+    private final Pose point8Start = poseFactory.of(81.2311, 114.435, 270);
+    private final Pose point8 = poseFactory.of(131.9836, 45.7048, 270);
+    private final Pose point8Control1 = poseFactory.of(131.0463, 97.0148, 0);
+
 
     public Path path1() {
         return Paths.line(start, path1).linear(start, path1);
@@ -64,7 +61,7 @@ public class AutonomAeschylusBLUE extends Robot{
     }
 
     public Path path3() {
-        return Paths.curve(point3Start, point3Control1, point3Control2, point3Control3, point3Control4, point3).linear(point3Start, point3);
+        return Paths.curve(point3Start, point3Control1, point3Control2, point3Control3, point3).linear(point3Start, point3);
     }
 
     public Path path4() {
@@ -76,11 +73,11 @@ public class AutonomAeschylusBLUE extends Robot{
     }
 
     public Path path6() {
-        return Paths.curve(point6Start, point6Control1, point6Control2, point6Control3, point6Control4, point6).linear(point6Start, point6);
+        return Paths.curve(point6Start, point6Control1, point6Control2, point6Control3, point6).linear(point6Start, point6);
     }
 
     public Path path7() {
-        return Paths.curve(point7Start, point7Control1, point7Control2, point7).linear(point7Start, point7);
+        return Paths.line(point7Start, point7).linear(point7Start, point7);
     }
 
     public Path path8() {
@@ -89,24 +86,23 @@ public class AutonomAeschylusBLUE extends Robot{
 
     public Command autoRoutine() {
         return sequential(
-                follow(follower, path1()), // 3s
+                follow(follower, path1()), // 2.9s
                 shoot(), // 2s
-                follow(follower, path2()), // 2s
+                follow(follower, path2()), // 2.2s
                 intake(), // 1s
-                follow(follower, path3()), // ~4s
+                follow(follower, path3()), // 3.6s
                 shoot(), // 2s
-                follow(follower, path4()), // 1s
+                follow(follower, path4()), // 1.1s
                 intake(), // 1s
-                follow(follower, path5()), // 1s
+                follow(follower, path5()), // 1.2s
                 shoot(), // 2s
-                follow(follower, path6()), // 3s
+                follow(follower, path6()), // 2.9s
                 intake(), // 1s
-                follow(follower, path7()), // 3s
+                follow(follower, path7()), // 2.1s
                 shoot(), // 2s
-                follow(follower, path8()) // 3s
+                follow(follower, path8()) // 2.7s
 
-                // => ~31s
-                // peste 30s :((((((
+                // 29.7
         );
     }
 
@@ -120,7 +116,7 @@ public class AutonomAeschylusBLUE extends Robot{
 
         waitForStart();
         schedule(autoRoutine());
-        
+
         while(opModeIsActive()) {
             follower.update();
             Scheduler.execute();
