@@ -1,5 +1,7 @@
 am adaugat toate autonoamele posibile, sper ca sunt bune
 
+***
+
 -- legenda --
 
 autonoame atunci cand coechipierul are autonom si el:
