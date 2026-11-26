@@ -1,6 +1,6 @@
 am adaugat toate autonoamele posibile, sper ca sunt bune
 
-legenda:
+-- legenda --
 autonoame atunci cand coechipierul are autonom si el:
 - protagonist = cel care trage primul / se spawneaza in fata la hive ul cu nectar
 - deuteragonist = opusul protagonistului / asteapta sa dea protagonistul tip
