@@ -73,9 +73,12 @@ public abstract class Robot extends LinearOpMode {
         return sequential(
                 instant(this::shooterON),
                 waitMs(900),
-                instant(this::intakeON),
+                instant(this::loaderON),
+                instant(this::transferON),
                 waitMs(1000),
-                instant(this::intakeOFF)
+                instant(this::shooterIDLE),
+                instant(this::transferOFF),
+                instant(this::loaderOFF)
         );
     }
     public Command intake() {
