@@ -46,7 +46,7 @@ public class AutonomDeuteragonistBLUE extends Robot {
 
     public Command autoRoutine() {
         return sequential(
-                waitMs(5000),
+                waitMs(7000),
                 shoot(),
                 follow(follower, path1()),
                 intake(),
