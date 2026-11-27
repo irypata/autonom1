@@ -22,7 +22,7 @@ import org.firstinspires.ftc.teamcode.pedro.Constants;
 public class AutonomAeschylusRED extends Robot{
     private Follower follower;
 
-    private final PoseFactory poseFactory = PoseFactory.degrees().mirrorX(70.75);;
+    private final PoseFactory poseFactory = PoseFactory.degrees().mirrorX(70.75).mirrorY(70.75);
 
     private final Pose start = poseFactory.of(81, 8, 90);
     private final Pose path1 = poseFactory.of(81, 114.2641, 270);
