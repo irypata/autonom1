@@ -21,8 +21,7 @@ import org.firstinspires.ftc.teamcode.pedro.Constants;
 @Autonomous(name = "ProtagonistBLUE")
 public class AutonomProtagonistBLUE extends Robot {
     private Follower follower;
-    private final PoseFactory poseFactory = PoseFactory.degrees().mirrorX(70.75);
-
+    private final PoseFactory poseFactory = PoseFactory.degrees().mirrorX(70.75).mirrorY(70.75);
     private final Pose start = poseFactory.of(56, 14, 90);
     private final Pose path1 = poseFactory.of(3.7931, 2.9854, 0);
     private final Pose path1Control1 = poseFactory.of(20.7074, 21.9101, 0);
