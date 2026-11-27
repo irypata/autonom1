@@ -21,8 +21,7 @@ import org.firstinspires.ftc.teamcode.pedro.Constants;
 @Autonomous(name = "DeuteragonistRED")
 public class AutonomDeuteragonistRED extends Robot {
     private Follower follower;
-    private final PoseFactory poseFactory = PoseFactory.degrees().mirrorX(70.75);
-
+    private final PoseFactory poseFactory = PoseFactory.degrees().mirrorX(70.75).mirrorY(70.75);
     private final Pose start = poseFactory.of(86, 14, 90);
     private final Pose path1 = poseFactory.of(94.3845, 7.0417, 90);
     private final Pose path1Control1 = poseFactory.of(97.8638, 18.0492, 0);
