@@ -46,7 +46,7 @@ public class AutonomDeuteragonistRED extends Robot {
 
     public Command autoRoutine() {
         return sequential(
-                waitMs(7000),
+                waitMs(4000),
                 shoot(),
                 follow(follower, path1()),
                 intake(),
