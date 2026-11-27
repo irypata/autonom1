@@ -64,8 +64,8 @@ public class AutonomDeuteragonistRED extends Robot {
         follower.setPose(start);
         follower.update();
 
-        schedule(autoRoutine());
         waitForStart();
+        schedule(autoRoutine());
 
         while(opModeIsActive()) {
             follower.update();
